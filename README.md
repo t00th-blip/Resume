@@ -1,20 +1,62 @@
-## My pagedown rendered CV
+# Resume — Mariana Ozaeta
 
-This repo contains the source-code and results of my CV built with the [pagedown package](https://pagedown.rbind.io) and a modified version of the 'resume' template. 
+Program evaluation · mixed-methods research · data analytics
 
-The main files are:
+**Live version:** https://t00th-blip.github.io/Resume/
 
-- `index.Rmd`: Source template for the cv, contains a variable `PDF_EXPORT` in the header that changes styles for pdf vs html. 
-- `index.html`: The final output of the template when the header variable `PDF_EXPORT` is set to `FALSE`. View it at [nickstrayer.me/cv](http://nickstrayer.me/cv).
-- `strayer_cv.pdf`: The final exported pdf as rendered by Chrome on my mac laptop. Links are put in footer and notes about online version are added. 
-- `resume.Rmd`: Source template for single page resume. 
-- `strayer_resume.pdf`: Result for single page resume.
-- `positions.csv`: A csv with columns encoding the various fields needed for a position entry in the CV. A column `section` is also available so different sections know which rows to use.
-- `css/`: Directory containing the custom CSS files used to tweak the default 'resume' format from pagedown. 
+A reproducible resume. All content lives in one CSV; the layout is R Markdown and CSS, so
+updating a job or adding a project means editing a spreadsheet row and re-knitting — not
+reformatting a document.
 
-## Want to use this to build your own CV/resume? 
+**Project case studies and code:** [github.com/t00th-blip/Portfolio](https://github.com/t00th-blip/Portfolio)
 
-1. Fork, clone, download the zip of this repo to your machine with RStudio.
-2. Go through and personalize the supplementary text in the Rmd you desire (`index.Rmd` for CV, `resume.Rmd` for resume).
-3. Using your spreadsheet editor of choice, replace the rows of `positions.csv` with your positions.
-3. Print each unique `section` (as encoded in the `section` column of `positions.csv`) in your `.Rmd` with the command `position_data %>% print_section('education')`.
+## Files
+
+| File | What it does |
+|---|---|
+| `positions.csv` | All resume content, one row per entry. The `section` column routes each row to a section; `description_1` … `description_5` become the bullets. |
+| `resume.Rmd` | The template — sidebar text, intro, and the `print_section()` calls that render each section. |
+| `parsing_functions.R` | Helpers that turn CSV rows into formatted entries. `print_section()` does the work. |
+| `css/styles.css` | Base theme: fonts and colors. |
+| `css/custom_resume.css` | Template's layout adjustments. |
+| `css/spacing.css` | Typography and spacing overrides. Five tunable variables at the top. |
+| `resume.html` | Knitted output — this is what GitHub Pages serves. |
+| `RESUME.md` | Plain-markdown version, readable without rendering. |
+| `OzaetaResume.docx` | Word version, for applications that require a file upload. |
+
+## Updating it
+
+1. Edit `positions.csv`. One row per entry; set `in_resume` to `TRUE` to include it.
+2. Knit `resume.Rmd` in RStudio.
+3. Commit the `.Rmd`, the CSV, and the regenerated `resume.html`.
+
+Adding a bullet to an entry means filling the next empty `description_N` column. The parsing
+function gathers every column beginning with `description`, so adding a `description_6` column
+works without touching any R code.
+
+Adding a whole new section means adding rows with a new `section` value, then calling
+`position_data %>% print_section('your_section')` under a new heading in `resume.Rmd`.
+
+Set `PDF_EXPORT <- TRUE` in the setup chunk to move links into numbered footnotes for printing,
+then knit and print to PDF from the browser.
+
+## Spacing and layout
+
+`css/spacing.css` controls leading, the gap between entries, the gap between bullets, the space
+above section headings, and the page margins. Each is a CSS variable at the top of the file:
+
+```css
+--rz-line-height:  1.55;
+--rz-entry-gap:    0.17in;
+--rz-bullet-gap:   0.055in;
+--rz-section-gap:  0.30in;
+--rz-page-margin:  0.35in;
+```
+
+Too airy, reduce the gaps. Too tight, raise them. To revert to the stock template look, remove
+`'css/spacing.css'` from the `css:` list in the `resume.Rmd` YAML header.
+
+## Built with
+
+[pagedown](https://pagedown.rbind.io) `html_resume`, from a modified version of
+[Nick Strayer's CV template](https://github.com/nstrayer/cv).
