@@ -117,11 +117,7 @@ Project case studies and code at
 Disclaimer {#disclaimer}
 --------------------------------------------------------------------------------
 
-Made with [**pagedown**](https://github.com/rstudio/pagedown).
 
-Source: [github.com/t00th-blip/Resume](https://github.com/t00th-blip/Resume).
-
-Last updated on `r Sys.Date()`.
 
 
 
