@@ -4,7 +4,7 @@ author: Mariana Ozaeta
 date: "`r Sys.Date()`"
 output:
   pagedown::html_resume:
-    css: ['css/custom_resume.css', 'css/styles.css', 'resume']
+    css: ['css/custom_resume.css', 'css/styles.css', 'resume', 'css/spacing.css']
     # set to true for a self-contained HTML page (slower to render)
     self_contained: true
 ---
@@ -57,29 +57,54 @@ Evaluation Methods {#skills}
 - Mixed-methods design
 - Needs, process & outcome evaluation
 - Logic models & evaluation plans
+- Monitoring & evaluation (M&E) plans
+- Quasi-experimental design; difference-in-differences
 - Bilingual instrument development
 - Semi-structured interviewing
 - Qualitative coding
 - Participatory & community-based methods
 - Data equity principles
+- Systematic literature review
 - IRB protocol development
 
 
-Analysis & Tools {#tools}
+Analysis & Reporting {#analysis}
+--------------------------------------------------------------------------------
+
+- Quantitative & qualitative analysis
+- Multiple regression
+- Descriptive & correlation statistics
+- Data cleaning & quality assurance
+- Administrative data validation
+- Data visualization
+- Technical writing
+- Reproducible reporting
+- Executive & board-level deliverables
+
+
+Tools {#tools}
 --------------------------------------------------------------------------------
 
 - R · RStudio · R Markdown
-- Multiple regression; descriptive & correlation statistics
-- Data cleaning & quality assurance
-- Data visualization
-- SurveyMonkey · Microsoft Office · SharePoint · Salesforce
+- SQL (in progress)
+- Power BI · Tableau
+- SurveyMonkey
+- Microsoft Office (Word, Excel with PivotTables and lookups, PowerPoint, Outlook, Teams)
+- SharePoint · Salesforce · Zoom
 
 
 Languages {#languages}
 --------------------------------------------------------------------------------
 
 - English — native
-- Spanish — fluent, including instrument development and interviewing
+- Spanish — fluent, including Spanish-language instrument development and interviewing
+
+
+Credentials {#credentials}
+--------------------------------------------------------------------------------
+
+- IRB Human Subjects Research certification
+- M.S., Program Evaluation & Data Analytics (December 2026)
 
 
 More info {#more-info}
@@ -91,13 +116,6 @@ Project case studies and code at
 
 Disclaimer {#disclaimer}
 --------------------------------------------------------------------------------
-
-Made with [**pagedown**](https://github.com/rstudio/pagedown).
-
-Source: [github.com/t00th-blip/Resume](https://github.com/t00th-blip/Resume).
-
-Last updated on `r Sys.Date()`.
-
 
 
 
