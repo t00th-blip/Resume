@@ -1,0 +1,171 @@
+---
+title: "Mariana Ozaeta's Resume"
+author: Mariana Ozaeta
+date: "`r Sys.Date()`"
+output:
+  pagedown::html_resume:
+    css: ['css/custom_resume.css', 'css/styles.css', 'resume', 'css/spacing.css']
+    # set to true for a self-contained HTML page (slower to render)
+    self_contained: true
+---
+
+
+```{r, include=FALSE}
+knitr::opts_chunk$set(
+  results = 'asis',
+  echo = FALSE
+)
+library(tidyverse)
+library(glue)
+
+# Set to TRUE to turn links into footnotes at the end of the document
+PDF_EXPORT <- FALSE
+
+# Holds all the links that were inserted, for placement at the end
+links <- c()
+
+source('parsing_functions.R')
+
+# Read the data and keep only rows tagged for the resume
+position_data <- read_csv('positions.csv') %>%
+  filter(in_resume) %>%
+  mutate(
+    # Collapse the two position types into one printed section
+    section = case_when(
+      section %in% c('research_positions', 'industry_positions') ~ 'positions',
+      TRUE ~ section
+    )
+  )
+```
+
+
+Aside
+================================================================================
+
+
+Contact {#contact}
+--------------------------------------------------------------------------------
+
+- <i class="fa fa-envelope"></i> Mozaeta12@gmail.com
+- <i class="fa fa-github"></i> github.com/t00th-blip
+- <i class="fa fa-map-marker"></i> Phoenix, AZ
+
+
+Evaluation Methods {#skills}
+--------------------------------------------------------------------------------
+
+- Mixed-methods design
+- Needs, process & outcome evaluation
+- Logic models & evaluation plans
+- Monitoring & evaluation (M&E) plans
+- Quasi-experimental design; difference-in-differences
+- Bilingual instrument development
+- Semi-structured interviewing
+- Qualitative coding
+- Participatory & community-based methods
+- Data equity principles
+- Systematic literature review
+- IRB protocol development
+
+
+Analysis & Reporting {#analysis}
+--------------------------------------------------------------------------------
+
+- Quantitative & qualitative analysis
+- Multiple regression
+- Descriptive & correlation statistics
+- Data cleaning & quality assurance
+- Administrative data validation
+- Data visualization
+- Technical writing
+- Reproducible reporting
+- Executive & board-level deliverables
+
+
+Tools {#tools}
+--------------------------------------------------------------------------------
+
+- R · RStudio · R Markdown
+- SQL (in progress)
+- Power BI · Tableau
+- SurveyMonkey
+- Microsoft Office (Word, Excel with PivotTables and lookups, PowerPoint, Outlook, Teams)
+- SharePoint · Salesforce · Zoom
+
+
+Languages {#languages}
+--------------------------------------------------------------------------------
+
+- English — native
+- Spanish — fluent, including Spanish-language instrument development and interviewing
+
+
+Credentials {#credentials}
+--------------------------------------------------------------------------------
+
+- IRB Human Subjects Research certification
+- M.S., Program Evaluation & Data Analytics (December 2026)
+
+
+More info {#more-info}
+--------------------------------------------------------------------------------
+
+Project case studies and code at
+[github.com/t00th-blip/Portfolio](https://github.com/t00th-blip/Portfolio).
+
+
+Disclaimer {#disclaimer}
+--------------------------------------------------------------------------------
+
+Made with [**pagedown**](https://github.com/rstudio/pagedown).
+
+Source: [github.com/t00th-blip/Resume](https://github.com/t00th-blip/Resume).
+
+Last updated on `r Sys.Date()`.
+
+
+
+
+Main
+================================================================================
+
+Mariana Ozaeta {#title}
+--------------------------------------------------------------------------------
+
+```{r}
+intro_text <- "Mixed-methods program evaluator completing an M.S. in Program Evaluation and Data Analytics at Arizona State University (December 2026).
+
+I carry evaluations end to end — logic model and IRB protocol through bilingual instrument design, quantitative and qualitative analysis, and findings translated into recommendations for boards and executive decision-makers. Equity-centered, participatory design is core training, not an overlay.
+
+Case studies and code: [github.com/t00th-blip/Portfolio](https://github.com/t00th-blip/Portfolio)
+"
+
+cat(sanitize_links(intro_text))
+```
+
+
+
+Education {data-icon=graduation-cap data-concise=true}
+--------------------------------------------------------------------------------
+
+```{r}
+position_data %>% print_section('education')
+```
+
+
+
+Evaluation & Professional Experience {data-icon=suitcase}
+--------------------------------------------------------------------------------
+
+```{r}
+position_data %>% print_section('positions')
+```
+
+
+
+Projects {data-icon=laptop}
+--------------------------------------------------------------------------------
+
+```{r}
+position_data %>% print_section('projects')
+```
